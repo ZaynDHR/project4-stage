@@ -8,7 +8,20 @@
       <div class="shortcut"><kbd>1-7</kbd> Filter category</div>
       <button class="close-help">Close</button>
     </div>
-  `,document.body.appendChild(e),e.querySelector(`.close-help, .help-backdrop`)?.addEventListener(`click`,T)}function T(){document.querySelector(`.help-modal`)?.remove()}function E(){return[...e,...d.submittedResources]}function D(e){return d.bookmarks.includes(e)}function O(e){d.bookmarks.includes(e)?d.bookmarks=d.bookmarks.filter(t=>t!==e):d.bookmarks.push(e),g(),P()}function k(e,t){d.ratings[e]=t,v(),P()}function A(e){return d.ratings[e]||0}function j(e){d.visitCounts[e]=(d.visitCounts[e]||0)+1,b()}function M(e){return d.visitCounts[e]||0}function N(){let e=E();if(d.activeCategory!==`All`&&(e=e.filter(e=>e.category===d.activeCategory)),d.searchQuery){let t=d.searchQuery.toLowerCase();e=e.filter(e=>e.title.toLowerCase().includes(t)||e.description.toLowerCase().includes(t))}return e}function P(){let e=document.getElementById(`resource-grid`);if(!e)return;let t=N();if(t.length===0){e.innerHTML=`<div class="no-results">
+  `,document.body.appendChild(e),e.querySelector(`.close-help, .help-backdrop`)?.addEventListener(`click`,T)}function T(){document.querySelector(`.help-modal`)?.remove()}var E=[{code:`<span class="keyword">const</span> <span class="var">developer</span> = {
+  learning: <span class="keyword">true</span>,
+  resources: devHub,
+  growth: <span class="function">infinite</span>()
+}`,lang:`JavaScript`},{code:`<span class="keyword">function</span> <span class="function">learn</span>() {
+  <span class="keyword">return</span> <span class="keyword">new</span> Skill();
+}`,lang:`JavaScript`},{code:`<span class="keyword">while</span> (<span class="var">curious</span>) {
+  <span class="function">explore</span>();
+}`,lang:`JavaScript`},{code:`<span class="keyword">const</span> <span class="var">dream</span> = <span class="function">achieveGoal</span>();
+<span class="keyword">if</span> (!<span class="var">dream</span>) <span class="function">tryAgain</span>();`,lang:`JavaScript`},{code:`<span class="keyword">class</span> <span class="var">FutureDeveloper</span> {
+  <span class="function">practice</span>(<span class="var">code</span>) {
+    <span class="keyword">return</span> <span class="keyword">true</span>;
+  }
+}`,lang:`JavaScript`}],D=0,O=0,k=!1;function A(){let e=document.getElementById(`typing-code`);if(!e)return;function t(){if(!e)return;let n=E[D].code;!k&&O<n.length?(e.innerHTML=n.substring(0,O+1),O++,setTimeout(t,50+Math.random()*50)):!k&&O===n.length?(k=!0,setTimeout(t,2e3)):k&&O>0?(e.innerHTML=n.substring(0,O-1),O--,setTimeout(t,30)):k&&O===0&&(k=!1,D=(D+1)%E.length,setTimeout(t,500))}t()}function j(){return[...e,...d.submittedResources]}function M(e){return d.bookmarks.includes(e)}function N(e){d.bookmarks.includes(e)?d.bookmarks=d.bookmarks.filter(t=>t!==e):d.bookmarks.push(e),g(),z()}function P(e,t){d.ratings[e]=t,v(),z()}function F(e){return d.ratings[e]||0}function I(e){d.visitCounts[e]=(d.visitCounts[e]||0)+1,b()}function L(e){return d.visitCounts[e]||0}function R(){let e=j();if(d.activeCategory!==`All`&&(e=e.filter(e=>e.category===d.activeCategory)),d.searchQuery){let t=d.searchQuery.toLowerCase();e=e.filter(e=>e.title.toLowerCase().includes(t)||e.description.toLowerCase().includes(t))}return e}function z(){let e=document.getElementById(`resource-grid`);if(!e)return;let t=R();if(t.length===0){e.innerHTML=`<div class="no-results">
       <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <circle cx="11" cy="11" r="8"></circle>
         <path d="M21 21l-4.35-4.35"></path>
@@ -19,8 +32,8 @@
     <div class="resource-card" style="animation-delay: ${t*.05}s">
       <div class="card-header">
         <span class="category-tag" style="background: ${r[e.category]}20; color: ${r[e.category]}">${e.category}</span>
-        <button class="bookmark-btn ${D(e.id)?`active`:``}" data-id="${e.id}">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="${D(e.id)?`currentColor`:`none`}" stroke="currentColor" stroke-width="2">
+        <button class="bookmark-btn ${M(e.id)?`active`:``}" data-id="${e.id}">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="${M(e.id)?`currentColor`:`none`}" stroke="currentColor" stroke-width="2">
             <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
           </svg>
         </button>
@@ -30,19 +43,19 @@
       <div class="rating-row">
         <div class="stars" data-id="${e.id}">
           ${[1,2,3,4,5].map(t=>`
-            <svg class="star ${A(e.id)>=t?`filled`:``}" data-rating="${t}" width="18" height="18" viewBox="0 0 24 24" fill="${A(e.id)>=t?`#f59e0b`:`none`}" stroke="${A(e.id)>=t?`#f59e0b`:`currentColor`}" stroke-width="2">
+            <svg class="star ${F(e.id)>=t?`filled`:``}" data-rating="${t}" width="18" height="18" viewBox="0 0 24 24" fill="${F(e.id)>=t?`#f59e0b`:`none`}" stroke="${F(e.id)>=t?`#f59e0b`:`currentColor`}" stroke-width="2">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
             </svg>
           `).join(``)}
         </div>
-        <span class="visit-count">${M(e.id)} visits</span>
+        <span class="visit-count">${L(e.id)} visits</span>
       </div>
       <div class="card-footer">
         <span class="difficulty" style="color: ${n[e.difficulty]}; background: ${n[e.difficulty]}20">${e.difficulty}</span>
         <a href="${e.url}" target="_blank" class="visit-btn" data-visit="${e.id}">Visit Resource →</a>
       </div>
     </div>
-  `).join(``),document.querySelectorAll(`.bookmark-btn`).forEach(e=>{e.addEventListener(`click`,t=>{t.preventDefault(),O(parseInt(e.dataset.id||`0`))})}),document.querySelectorAll(`.stars`).forEach(e=>{e.querySelectorAll(`.star`).forEach(t=>{t.addEventListener(`click`,n=>{n.preventDefault(),k(parseInt(e.dataset.id||`0`),parseInt(t.dataset.rating||`0`))})})}),document.querySelectorAll(`.visit-btn`).forEach(e=>{e.addEventListener(`click`,()=>{j(parseInt(e.dataset.visit||`0`))})})}function F(){let e=document.getElementById(`resource-grid`);if(!e)return;let t=E().filter(e=>d.bookmarks.includes(e.id));if(t.length===0){e.innerHTML=`<div class="no-results">
+  `).join(``),document.querySelectorAll(`.bookmark-btn`).forEach(e=>{e.addEventListener(`click`,t=>{t.preventDefault(),N(parseInt(e.dataset.id||`0`))})}),document.querySelectorAll(`.stars`).forEach(e=>{e.querySelectorAll(`.star`).forEach(t=>{t.addEventListener(`click`,n=>{n.preventDefault(),P(parseInt(e.dataset.id||`0`),parseInt(t.dataset.rating||`0`))})})}),document.querySelectorAll(`.visit-btn`).forEach(e=>{e.addEventListener(`click`,()=>{I(parseInt(e.dataset.visit||`0`))})})}function B(){let e=document.getElementById(`resource-grid`);if(!e)return;let t=j().filter(e=>d.bookmarks.includes(e.id));if(t.length===0){e.innerHTML=`<div class="no-results">
       <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
         <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
       </svg>
@@ -65,7 +78,7 @@
         <a href="${e.url}" target="_blank" class="visit-btn">Visit Resource →</a>
       </div>
     </div>
-  `).join(``),document.querySelectorAll(`.bookmark-btn`).forEach(e=>{e.addEventListener(`click`,t=>{t.preventDefault(),O(parseInt(e.dataset.id||`0`))})})}function I(e){e.preventDefault();let t=e.target,n=new FormData(t),r={id:Date.now(),title:n.get(`title`),url:n.get(`url`),category:n.get(`category`),difficulty:n.get(`difficulty`),description:n.get(`description`)};d.submittedResources.push(r),S(),t.reset(),C(`Resource submitted successfully!`)}function L(n){let r=document.getElementById(`main-content`);if(!r)return;if(n===`home`)r.innerHTML=`
+  `).join(``),document.querySelectorAll(`.bookmark-btn`).forEach(e=>{e.addEventListener(`click`,t=>{t.preventDefault(),N(parseInt(e.dataset.id||`0`))})})}function V(e){e.preventDefault();let t=e.target,n=new FormData(t),r={id:Date.now(),title:n.get(`title`),url:n.get(`url`),category:n.get(`category`),difficulty:n.get(`difficulty`),description:n.get(`description`)};d.submittedResources.push(r),S(),t.reset(),C(`Resource submitted successfully!`)}function H(n){let r=document.getElementById(`main-content`);if(!r)return;if(n===`home`)r.innerHTML=`
       <section class="hero-section">
         <div class="hero-content">
           <h1>Your Gateway to Development Knowledge</h1>
@@ -75,11 +88,7 @@
           </div>
         </div>
         <div class="code-animation">
-          <pre><code><span class="keyword">const</span> <span class="var">developer</span> = {
-  learning: <span class="keyword">true</span>,
-  resources: devHub,
-  growth: <span class="function">infinite</span>()
-}</code></pre>
+          <pre><code id="typing-code"></code></pre>
         </div>
       </section>
       <section class="categories-section">
@@ -98,7 +107,7 @@
         <p class="subtitle">Saved resources for later</p>
         <div id="resource-grid" class="resource-grid"></div>
       </section>
-    `,F();return}else if(n===`submit`){r.innerHTML=`
+    `,B();return}else if(n===`submit`){r.innerHTML=`
       <section class="submit-section">
         <h1>Submit a Resource</h1>
         <p class="subtitle">Share a helpful resource with the community</p>
@@ -134,7 +143,7 @@
           <button type="submit" class="submit-btn">Submit Resource</button>
         </form>
       </section>
-    `,document.getElementById(`submit-form`)?.addEventListener(`submit`,I);return}else if(n===`about`){r.innerHTML=`
+    `,document.getElementById(`submit-form`)?.addEventListener(`submit`,V);return}else if(n===`about`){r.innerHTML=`
       <section class="about-section">
         <h1>About DevHub</h1>
         <div class="about-content">
@@ -153,7 +162,7 @@
           </div>
         </div>
       </section>
-    `,document.querySelector(`.submit-link-btn`)?.addEventListener(`click`,()=>R(`submit`));return}document.querySelectorAll(`.category-tab`).forEach(e=>{e.addEventListener(`click`,()=>{d.activeCategory=e.dataset.category||`All`,document.querySelectorAll(`.category-tab`).forEach(e=>e.classList.remove(`active`)),e.classList.add(`active`),P()})}),document.querySelectorAll(`.quick-cat-btn`).forEach(e=>{e.addEventListener(`click`,()=>{let t=e.dataset.category||`All`;d.activeCategory=t,document.querySelectorAll(`.category-tab`).forEach(e=>e.classList.remove(`active`)),document.querySelector(`[data-category="${t}"]`)?.classList.add(`active`),P(),document.getElementById(`resource-grid`)?.scrollIntoView({behavior:`smooth`})})});let i=document.getElementById(`search-input`);i&&i.addEventListener(`input`,e=>{d.searchQuery=e.target.value,P()}),P()}function R(e){document.querySelectorAll(`.nav-link`).forEach(e=>e.classList.remove(`active`)),document.querySelector(`[data-page="${e}"]`)?.classList.add(`active`),L(e),document.getElementById(`nav`)?.classList.remove(`open`)}function z(){document.addEventListener(`keydown`,e=>{if(e.key===`/`&&document.activeElement?.tagName!==`INPUT`&&document.activeElement?.tagName!==`TEXTAREA`&&(e.preventDefault(),document.getElementById(`search-input`)?.focus()),e.key===`?`&&document.activeElement?.tagName!==`INPUT`&&document.activeElement?.tagName!==`TEXTAREA`&&(e.preventDefault(),w()),e.key===`Escape`&&(T(),document.activeElement?.blur()),e.key>=`1`&&e.key<=`7`&&document.activeElement?.tagName!==`INPUT`&&document.activeElement?.tagName!==`TEXTAREA`){let n=parseInt(e.key)-1;n<t.length&&(d.activeCategory=t[n],document.querySelectorAll(`.category-tab`).forEach(e=>e.classList.remove(`active`)),document.querySelector(`[data-category="${t[n]}"]`)?.classList.add(`active`),P())}})}var B=`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="theme-icon">
+    `,document.querySelector(`.submit-link-btn`)?.addEventListener(`click`,()=>U(`submit`));return}document.querySelectorAll(`.category-tab`).forEach(e=>{e.addEventListener(`click`,()=>{d.activeCategory=e.dataset.category||`All`,document.querySelectorAll(`.category-tab`).forEach(e=>e.classList.remove(`active`)),e.classList.add(`active`),z()})}),document.querySelectorAll(`.quick-cat-btn`).forEach(e=>{e.addEventListener(`click`,()=>{let t=e.dataset.category||`All`;d.activeCategory=t,document.querySelectorAll(`.category-tab`).forEach(e=>e.classList.remove(`active`)),document.querySelector(`[data-category="${t}"]`)?.classList.add(`active`),z(),document.getElementById(`resource-grid`)?.scrollIntoView({behavior:`smooth`})})});let i=document.getElementById(`search-input`);i&&i.addEventListener(`input`,e=>{d.searchQuery=e.target.value,z()}),z()}function U(e){document.querySelectorAll(`.nav-link`).forEach(e=>e.classList.remove(`active`)),document.querySelector(`[data-page="${e}"]`)?.classList.add(`active`),H(e),document.getElementById(`nav`)?.classList.remove(`open`)}function W(){document.addEventListener(`keydown`,e=>{if(e.key===`/`&&document.activeElement?.tagName!==`INPUT`&&document.activeElement?.tagName!==`TEXTAREA`&&(e.preventDefault(),document.getElementById(`search-input`)?.focus()),e.key===`?`&&document.activeElement?.tagName!==`INPUT`&&document.activeElement?.tagName!==`TEXTAREA`&&(e.preventDefault(),w()),e.key===`Escape`&&(T(),document.activeElement?.blur()),e.key>=`1`&&e.key<=`7`&&document.activeElement?.tagName!==`INPUT`&&document.activeElement?.tagName!==`TEXTAREA`){let n=parseInt(e.key)-1;n<t.length&&(d.activeCategory=t[n],document.querySelectorAll(`.category-tab`).forEach(e=>e.classList.remove(`active`)),document.querySelector(`[data-category="${t[n]}"]`)?.classList.add(`active`),z())}})}var G=`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="theme-icon">
   <circle cx="12" cy="12" r="5"></circle>
   <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
 </svg>`;document.querySelector(`#app`).innerHTML=`
@@ -187,7 +196,7 @@
           <input type="text" id="search-input" placeholder="Search resources..." />
         </div>
         <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
-          ${B}
+          ${G}
         </button>
       </div>
       <div class="search-container mobile-show" id="mobile-search">
@@ -210,4 +219,4 @@
       </a>
     </div>
   </footer>
-`,f(),h(),x(),_(),y(),L(`home`),z(),document.getElementById(`theme-toggle`)?.addEventListener(`click`,m),document.getElementById(`shortcut-hint`)?.addEventListener(`click`,w),document.getElementById(`hamburger`)?.addEventListener(`click`,()=>{document.getElementById(`nav`)?.classList.toggle(`open`)}),document.getElementById(`mobile-search-input`)?.addEventListener(`input`,e=>{d.searchQuery=e.target.value,P()}),document.querySelectorAll(`.nav-link, .logo`).forEach(e=>{e.addEventListener(`click`,t=>{t.preventDefault(),R(e.dataset.page||`home`)})});
+`,f(),h(),x(),_(),y(),H(`home`),W(),A(),document.getElementById(`theme-toggle`)?.addEventListener(`click`,m),document.getElementById(`shortcut-hint`)?.addEventListener(`click`,w),document.getElementById(`hamburger`)?.addEventListener(`click`,()=>{document.getElementById(`nav`)?.classList.toggle(`open`)}),document.getElementById(`mobile-search-input`)?.addEventListener(`input`,e=>{d.searchQuery=e.target.value,z()}),document.querySelectorAll(`.nav-link, .logo`).forEach(e=>{e.addEventListener(`click`,t=>{t.preventDefault(),U(e.dataset.page||`home`)})});
