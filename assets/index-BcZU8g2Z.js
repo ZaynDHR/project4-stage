@@ -179,7 +179,7 @@
         <div class="shortcut-hint" id="shortcut-hint" title="Press ? for shortcuts">
           <span>Shortcuts</span> <kbd>?</kbd>
         </div>
-        <div class="search-container">
+        <div class="search-container" id="desktop-search">
           <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="8"></circle>
             <path d="M21 21l-4.35-4.35"></path>
@@ -190,6 +190,12 @@
           ${B}
         </button>
       </div>
+      <div class="search-container mobile-show" id="mobile-search">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="M21 21l-4.35-4.35"></path>
+        </svg>
+        <input type="text" id="mobile-search-input" placeholder="Search resources..." />
     </div>
   </header>
   <main id="main-content"></main>
@@ -204,4 +210,4 @@
       </a>
     </div>
   </footer>
-`,f(),h(),x(),_(),y(),L(`home`),z(),document.getElementById(`theme-toggle`)?.addEventListener(`click`,m),document.getElementById(`shortcut-hint`)?.addEventListener(`click`,w),document.getElementById(`hamburger`)?.addEventListener(`click`,()=>{document.getElementById(`nav`)?.classList.toggle(`open`)}),document.querySelectorAll(`.nav-link, .logo`).forEach(e=>{e.addEventListener(`click`,t=>{t.preventDefault(),R(e.dataset.page||`home`)})});
+`,f(),h(),x(),_(),y(),L(`home`),z(),document.getElementById(`theme-toggle`)?.addEventListener(`click`,m),document.getElementById(`shortcut-hint`)?.addEventListener(`click`,w),document.getElementById(`hamburger`)?.addEventListener(`click`,()=>{document.getElementById(`nav`)?.classList.toggle(`open`)}),document.getElementById(`mobile-search-input`)?.addEventListener(`input`,e=>{d.searchQuery=e.target.value,P()}),document.querySelectorAll(`.nav-link, .logo`).forEach(e=>{e.addEventListener(`click`,t=>{t.preventDefault(),R(e.dataset.page||`home`)})});
