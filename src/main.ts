@@ -346,6 +346,7 @@ function navigate(page: string) {
   document.querySelectorAll(".nav-link").forEach(link => link.classList.remove("active"))
   document.querySelector(`[data-page="${page}"]`)?.classList.add("active")
   setActivePage(page)
+  document.getElementById("nav")?.classList.remove("open")
 }
 
 function setupKeyboardShortcuts() {
@@ -389,7 +390,10 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         </svg>
         <span>DevHub</span>
       </a>
-      <nav class="nav">
+      <button class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="nav">
         <a href="#" class="nav-link active" data-page="home">Home</a>
         <a href="#" class="nav-link" data-page="bookmarks">Bookmarks</a>
         <a href="#" class="nav-link" data-page="submit">Submit</a>
@@ -436,6 +440,10 @@ setupKeyboardShortcuts()
 
 document.getElementById("theme-toggle")?.addEventListener("click", storage.toggleTheme)
 document.getElementById("shortcut-hint")?.addEventListener("click", showHelpModal)
+
+document.getElementById("hamburger")?.addEventListener("click", () => {
+  document.getElementById("nav")?.classList.toggle("open")
+})
 
 document.querySelectorAll(".nav-link, .logo").forEach(link => {
   link.addEventListener("click", (e) => {
