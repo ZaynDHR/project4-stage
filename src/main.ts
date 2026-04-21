@@ -11,6 +11,61 @@ import * as storage from './utils/storage'
 import { showToast, showHelpModal, closeHelpModal } from './utils/ui'
 import type { Resource } from './data/resources'
 
+const codeSnippets = [
+  { code: `<span class="keyword">const</span> <span class="var">developer</span> = {
+  learning: <span class="keyword">true</span>,
+  resources: devHub,
+  growth: <span class="function">infinite</span>()
+}`, lang: "JavaScript" },
+  { code: `<span class="keyword">function</span> <span class="function">learn</span>() {
+  <span class="keyword">return</span> <span class="keyword">new</span> Skill();
+}`, lang: "JavaScript" },
+  { code: `<span class="keyword">while</span> (<span class="var">curious</span>) {
+  <span class="function">explore</span>();
+}`, lang: "JavaScript" },
+  { code: `<span class="keyword">const</span> <span class="var">dream</span> = <span class="function">achieveGoal</span>();
+<span class="keyword">if</span> (!<span class="var">dream</span>) <span class="function">tryAgain</span>();`, lang: "JavaScript" },
+  { code: `<span class="keyword">class</span> <span class="var">FutureDeveloper</span> {
+  <span class="function">practice</span>(<span class="var">code</span>) {
+    <span class="keyword">return</span> <span class="keyword">true</span>;
+  }
+}`, lang: "JavaScript" }
+]
+
+let currentSnippetIndex = 0
+let charIndex = 0
+let isDeleting = false
+
+function setupTypingAnimation() {
+  const codeElement = document.getElementById("typing-code")
+  if (!codeElement) return
+  
+  function typeCode() {
+    if (!codeElement) return
+    const snippet = codeSnippets[currentSnippetIndex]
+    let displayCode = snippet.code
+    
+    if (!isDeleting && charIndex < displayCode.length) {
+      codeElement.innerHTML = displayCode.substring(0, charIndex + 1)
+      charIndex++
+      setTimeout(typeCode, 50 + Math.random() * 50)
+    } else if (!isDeleting && charIndex === displayCode.length) {
+      isDeleting = true
+      setTimeout(typeCode, 2000)
+    } else if (isDeleting && charIndex > 0) {
+      codeElement.innerHTML = displayCode.substring(0, charIndex - 1)
+      charIndex--
+      setTimeout(typeCode, 30)
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false
+      currentSnippetIndex = (currentSnippetIndex + 1) % codeSnippets.length
+      setTimeout(typeCode, 500)
+    }
+  }
+  
+  typeCode()
+}
+
 function getAllResources(): Resource[] {
   return [...resources, ...store.submittedResources]
 }
@@ -218,11 +273,7 @@ function setActivePage(page: string) {
           </div>
         </div>
         <div class="code-animation">
-          <pre><code><span class="keyword">const</span> <span class="var">developer</span> = {
-  learning: <span class="keyword">true</span>,
-  resources: devHub,
-  growth: <span class="function">infinite</span>()
-}</code></pre>
+          <pre><code id="typing-code"></code></pre>
         </div>
       </section>
       <section class="categories-section">
@@ -403,7 +454,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         <div class="shortcut-hint" id="shortcut-hint" title="Press ? for shortcuts">
           <span>Shortcuts</span> <kbd>?</kbd>
         </div>
-        <div class="search-container">
+        <div class="search-container" id="desktop-search">
           <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="11" cy="11" r="8"></circle>
             <path d="M21 21l-4.35-4.35"></path>
@@ -414,6 +465,12 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
           ${themeIcon}
         </button>
       </div>
+      <div class="search-container mobile-show" id="mobile-search">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="M21 21l-4.35-4.35"></path>
+        </svg>
+        <input type="text" id="mobile-search-input" placeholder="Search resources..." />
     </div>
   </header>
   <main id="main-content"></main>
@@ -437,12 +494,18 @@ storage.loadRatings()
 storage.loadVisitCounts()
 setActivePage("home")
 setupKeyboardShortcuts()
+setupTypingAnimation()
 
 document.getElementById("theme-toggle")?.addEventListener("click", storage.toggleTheme)
 document.getElementById("shortcut-hint")?.addEventListener("click", showHelpModal)
 
 document.getElementById("hamburger")?.addEventListener("click", () => {
   document.getElementById("nav")?.classList.toggle("open")
+})
+
+document.getElementById("mobile-search-input")?.addEventListener("input", (e) => {
+  store.searchQuery = (e.target as HTMLInputElement).value
+  renderResources()
 })
 
 document.querySelectorAll(".nav-link, .logo").forEach(link => {
